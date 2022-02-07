@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,18 +18,18 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          <a class="nav-link disabled" aria-current="page" href="/home">Home</a>
         </li>
         
        
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">About</a>
+          <a class="nav-link " href="/articles" tabindex="-1" >Articles</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Blog</a>
+          <a class="nav-link active" href="/categories" tabindex="-1" >categories</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">F&Q</a>
@@ -41,38 +42,45 @@
     </div>
   </div>
 </nav>
-
     <div style="height:30px;"></div>
-   <section class="container ">
-   <h1><span>Our Gategories</span></h1>
+
+<section class="container-fluid ">
        <div class="row">
-           
-          
-   @foreach($Gategories as $category)        
-           <div class="col-md-3 m-2 ">  
+          <h2><a href="/add-category" class="btn btn-danger" >Add New Category</a></h2>
+    <div style="height:30px;"></div>
+
+@foreach($categories as $category)
+       
+   <div class="col-md-3 ml-1 mb-4">  
 <div class="card" style="width: 18rem;">
 
-  <img src="images/{{ $category['img'] }}" class="card-img-top" alt="...">
+  <img src="images/{{$category->category_image}}" class="card-img-top" alt="...">
  
   <div class="card-body">
-    <h5 class="card-title">{{$category['name']}}</h5>
-    <p class="card-text"></p>
-    <a href="/home/products/" class="btn btn-danger">more...</a>
+    <h5 class="card-title"><span> Name</span> => {{$category->name}}</h5>
+    <p class="card-text"><span>ID</span> => {{$category->id}}</p>
+    <div class="card-body d-flex justify-content-between">
+    <form action="/delete/{{$category->id}}" method="post">
+@method('DELETE')
+@csrf
+    <button type="submit" class="btn btn-danger "> Delete </button>
+</form>
+    <a href="/edit/{{$category->id}}" class="btn btn-primary">Update</a>
+    <a href="/show/{{$category->id}}" class="btn btn-success">Show</a>
+
   </div>
-</div>
-           
+  </div>
+</div>      
 </div>
 @endforeach
 
-
 </div>
 </section>
-
-<div class="space-100"></div>
-
 
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>   
 </html>
+
+
