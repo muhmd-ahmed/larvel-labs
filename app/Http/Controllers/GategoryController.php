@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Models\Gategory;
+use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateValidationRequest;
+
+
+
 
 
 class GategoryController extends Controller
@@ -15,7 +20,9 @@ class GategoryController extends Controller
     public function createCategory(){
         return view('createCategory');
     }
-    public function saveCategory(Request $request){
+    public function saveCategory(CreateValidationRequest $request){
+        $validated = $request->validated(); 
+    
         $category_info=new Gategory;
         $category_info->name=$request->category_name;
         $category_info->category_image=$request->category_img;
@@ -27,7 +34,8 @@ class GategoryController extends Controller
         $category=Gategory::find($category);
         return view('editCategory',compact('category','Gategories'));
     }
-    public function update(Request $request,$category){
+    public function update(CreateValidationRequest $request,$category){
+        $validated = $request->validated(); 
         $field=$request->all();
         $category=Gategory::find($category);
         $category->name=$field['category_name'];
@@ -35,7 +43,6 @@ class GategoryController extends Controller
         return redirect('/categories');
     }
     public function showCategory($category){
-        
         $category=Gategory::find($category);
         return view('showCategory',compact('category'));
     }
@@ -44,4 +51,7 @@ class GategoryController extends Controller
         $category->delete();
         return redirect('/categories');
     }
+
+    
+    
 }

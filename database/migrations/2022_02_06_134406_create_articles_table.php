@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('is_used');
             $table->string('article_image');
             $table->unsignedBigInteger('gategory_id');
-    $table->foreign('gategory_id')->references('id')->on('gategories');
+    $table->foreign('gategory_id')->references('id')->on('gategories')->onDelete('cascade');
             $table->timestamps();
         });
     }

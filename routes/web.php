@@ -30,6 +30,7 @@ Route::get('/show/{category}',[GategoryController::class,'showCategory']);
 Route::delete('/delete/{category}',[GategoryController::class,'deleteCategory']);
 
 
+
 Route::get('/articles',[ArticleController::class,'listArticles']);
 Route::get('/add-article',[ArticleController::class,'createArticle']);
 Route::post('/save-article',[ArticleController::class,'saveArticle']);

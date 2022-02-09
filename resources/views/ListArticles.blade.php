@@ -61,7 +61,8 @@
     <p class="card-text"><span>ID</span> => {{$article->id}}</p>
     <p class="card-text"><span>Slug</span> => {{$article->slug}}</p>
     <p class="card-text"><span>Details</span> => {{$article->details}}</p>
-    <p class="card-text"><span>Category Number</span> => {{$article->gategory_id}}</p>
+    <p class="card-text"><span>Category Name</span> => {{$article->category->name}}</p>
+
 
     <div class="card-body d-flex justify-content-between">
     <form action="/delete-article/{{$article->id}}" method="post">

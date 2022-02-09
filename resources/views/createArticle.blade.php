@@ -18,33 +18,54 @@
 @csrf
   <div class="mb-3 mt-5">
     <label for="articleName" class="form-label">Article Name</label>
-    <input type="text" class="form-control" id="articleName" name="article_name" >
+    <input type="text" class="form-control" id="articleName" name="article_name" value="{{old('article_name') ??old('article_name') }}">
+    @error('article_name')
+    <span>{{$message}}</span>
+    @enderror
 </div>
 <div class="mb-3 mt-5">
     <label for="articleDetails" class="form-label">Article Details</label>
-    <input type="text" class="form-control" id="articleDetails" name="details" >
+    <input type="text" class="form-control" id="articleDetails" name="details" value="{{old('details') ??old('details') }}">
+    @error('details')
+    <span>{{$message}}</span>
+    @enderror
 </div>
 <div class="mb-3 mt-5">
     <label for="articleSlug" class="form-label">Article Slug</label>
-    <input type="text" class="form-control" id="articleSlug" name="slug" >
+    <input type="text" class="form-control" id="articleSlug" name="slug" value="{{old('slug') ??old('slug') }}" >
+    @error('slug')
+    <span>{{$message}}</span>
+    @enderror
 </div>
 
-<div class="mb-3 mt-5">
-    <label for="category_id" class="form-label">Category Number</label>
-    <input type="text" class="form-control" id="category_id" name="category_id" >
-</div>
+<select class="form-select mb-3 mt-5" name="categories">
+<option  disabled selected>Select One Category </option>
+  @foreach($categories as $category)
+  <option value="{{$category->id}}">{{$category->name}}</option>
+  @endforeach
+</select>
+@error('categories')
+    <span>{{$message}}</span>
+    @enderror
 <div class="mb-3 mt-5">
     <label for="articleImg" class="form-label">Article image</label>
-    <input type="file" class="form-control" id="articleImg" name="article_img" >
+    <input type="file" class="form-control" id="articleImg" name="article_img"  >
+    @error('article_img')
+    <span>{{$message}}</span>
+    @enderror
 </div>
 <div class="form-check mt-5 ">
   <input class="form-check-input" type="radio" name="is_used" id="is_used" >
   <label class="form-check-label" for="is_used">
   Is Used
   </label>
+  @error('is_used')
+    <span>{{$message}}</span>
+    @enderror
 </div>
-  
-  <button type="submit" class="btn btn-primary mt-5">Submit</button>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <button type="submit" class="btn btn-danger mt-5 mb-5 w-50 ">Add</button>
+</div>
 </form>
 </div>
 </div>

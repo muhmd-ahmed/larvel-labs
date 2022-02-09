@@ -18,13 +18,19 @@
 @csrf
   <div class="mb-3 mt-5">
     <label for="exampleInputEmail1" class="form-label">Category Name</label>
-    <input type="text" class="form-control" id="CategoryName" name="category_name" >
-    
+    <input type="text" class="form-control" id="CategoryName" name="category_name" value="{{old('category_name') ??old('category_name') }}" >
+    @error('category_name')
+    <span>{{$message}}</span>
+    @enderror
+</div>
   <div class="mb-3 mt-5">
-    <label for="category_img" class="form-label">Category Image Source</label>
+    <label for="category_img" class="form-label">Category Image</label>
     <input type="file" class="form-control" id="category_img" name="category_img">
+    @error('category_img')
+    <span>{{$message}}</span>
+    @enderror
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-danger mb-3 mt-5 d-grid gap-2 col-6 mx-auto">Submit</button>
 </form>
 </div>
 </div>
