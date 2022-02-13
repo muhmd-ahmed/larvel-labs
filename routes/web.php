@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GategoryController;
 use App\Http\Controllers\ArticleController;
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +17,7 @@ use App\Http\Controllers\ArticleController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/categories',[GategoryController::class,'listAllCategories']);
+Route::get('/categories',[GategoryController::class,'listAllCategories'])->middleware(['auth']);
 Route::get('/add-category',[GategoryController::class,'createCategory']);
 Route::post('/save',[GategoryController::class,'saveCategory']);
 Route::get('/edit/{category}',[GategoryController::class,'ShowEditInfo']);
@@ -31,8 +27,8 @@ Route::delete('/delete/{category}',[GategoryController::class,'deleteCategory'])
 
 
 
-Route::get('/articles',[ArticleController::class,'listArticles']);
-Route::get('/add-article',[ArticleController::class,'createArticle']);
+Route::get('/articles',[ArticleController::class,'listArticles'])->middleware(['auth','is_admin']);
+Route::get('/add-article',[ArticleController::class,'createArticle'])->middleware(['auth','is_admin','is_adminAndAge_more_30']) ;
 Route::post('/save-article',[ArticleController::class,'saveArticle']);
 Route::get('/edit-article/{article}',[ArticleController::class,'ShowEditInfo']);
 Route::put('/edit-article/{article}',[ArticleController::class,'update']);
@@ -40,7 +36,8 @@ Route::get('/show-article/{article}',[ArticleController::class,'showArticle']);
 Route::delete('/delete-article/{article}',[ArticleController::class,'deleteArticle']);
 
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-
-
-
+require __DIR__.'/auth.php';

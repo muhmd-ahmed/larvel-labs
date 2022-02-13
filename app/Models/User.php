@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setDateAttribute($value)
+{
+    $this->attributes['date'] = Carbon::createFromFormat('Y-m-d g:i A', $value)->format('Y-m-d H:i:s');
+}
 }
