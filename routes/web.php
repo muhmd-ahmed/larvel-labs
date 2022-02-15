@@ -27,6 +27,8 @@ Route::delete('/delete/{category}',[GategoryController::class,'deleteCategory'])
 
 
 
+Route::get('/template',[ArticleController::class,'listArticlesToTemplate'])->middleware(['auth','is_admin']);
+
 Route::get('/articles',[ArticleController::class,'listArticles'])->middleware(['auth','is_admin']);
 Route::get('/add-article',[ArticleController::class,'createArticle'])->middleware(['auth','is_admin','is_adminAndAge_more_30']) ;
 Route::post('/save-article',[ArticleController::class,'saveArticle']);
@@ -34,7 +36,10 @@ Route::get('/edit-article/{article}',[ArticleController::class,'ShowEditInfo']);
 Route::put('/edit-article/{article}',[ArticleController::class,'update']);
 Route::get('/show-article/{article}',[ArticleController::class,'showArticle']);
 Route::delete('/delete-article/{article}',[ArticleController::class,'deleteArticle']);
+// Route::get('/template',function () {
 
+//     return view('dashboard.pages.data');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

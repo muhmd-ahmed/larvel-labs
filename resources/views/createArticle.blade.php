@@ -14,7 +14,7 @@
         
        <div class="col-md-6 border mb-5"> 
          <h2 class="text-center mt-4">ADD <span>Article</span> </h2>   
-<form method="post" action="/save-article" >
+<form method="post" action="/save-article" enctype="multipart/form-data" >
 @csrf
   <div class="mb-3 mt-5">
     <label for="articleName" class="form-label">Article Name</label>

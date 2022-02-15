@@ -54,7 +54,9 @@
    <div class="col-md-3 ml-1 mb-4">  
 <div class="card" style="width: 18rem;">
 
-  <img src="images/{{$category->category_image}}" class="card-img-top" alt="...">
+  <img src="{{$category->getFirstMediaUrl()}}" class="card-img-top" alt="...">
+
+
  
   <div class="card-body">
     <h5 class="card-title"><span> Name</span> => {{$category->name}}</h5>

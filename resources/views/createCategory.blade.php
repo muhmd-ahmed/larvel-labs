@@ -14,7 +14,7 @@
         
        <div class="col-md-6 border mb-5"> 
          <h2 class="text-center mt-4">ADD <span>Category</span> </h2>   
-<form method="post" action="/save" >
+<form method="post" action="/save" enctype="multipart/form-data" >
 @csrf
   <div class="mb-3 mt-5">
     <label for="exampleInputEmail1" class="form-label">Category Name</label>

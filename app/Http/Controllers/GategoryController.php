@@ -14,6 +14,7 @@ class GategoryController extends Controller
 {
     public function listAllCategories(){
         $Gategories = Gategory::all();
+        
         return view('CategoryList',['categories'=>$Gategories]);
     }
 
@@ -25,7 +26,10 @@ class GategoryController extends Controller
     
         $category_info=new Gategory;
         $category_info->name=$request->category_name;
-        $category_info->category_image=$request->category_img;
+        
+        $file=$request->file('category_img');
+        $category_info->category_image=$file;
+        $category_info->addMedia($file)->toMediaCollection();
         $category_info->save();
         return redirect('/categories');
     }

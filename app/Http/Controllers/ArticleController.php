@@ -14,6 +14,11 @@ class ArticleController extends Controller
         
         return view('ListArticles',compact('Articles'));
     }
+    public function listArticlesToTemplate(){
+        $Articles = Article::all();
+        
+        return view('dashboard.pages.data',compact('Articles'));
+    }
 
     public function createArticle(){
         $categories= Gategory::all();
